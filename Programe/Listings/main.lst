@@ -1,0 +1,165 @@
+C51 COMPILER V9.57.0.0   MAIN                                                              12/13/2019 09:45:34 PAGE 1   
+
+
+C51 COMPILER V9.57.0.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: D:\Keil\C51\BIN\C51.EXE User\main.c OPTIMIZE(8,SPEED) BROWSE INCDIR(.\User;.\APP\lcd1602;.\APP\keyb
+                    -orad) DEBUG OBJECTEXTEND PRINT(.\Listings\main.lst) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include "main.h"
+   2          #include "string.h"
+   3          
+   4          /***********************************************************
+   5          *       @breif          延时函数，延时1ms
+   6          *       @param          c
+   7          *       @retval         None
+   8          *       @note           该函数是在12MHZ晶振下，12分频单片机的延时。
+   9          ************************************************************/
+  10          void delay_ms(uint nms)
+  11          {
+  12   1              uchar i=0,j=0;
+  13   1              for (; nms>0; nms--)
+  14   1              {
+  15   2                       for (i=199;i>0;i--)
+  16   2                       {
+  17   3                              for(j=1;j>0;j--);
+  18   3                       }      
+  19   2              }
+  20   1      }
+  21          
+  22          
+  23          uchar calc_buf[50]={0};
+  24          
+  25          int main(void)
+  26          {
+  27   1              uchar i=0;
+  28   1              uchar temp = 0;
+  29   1              uint num = 0;
+  30   1              uchar* pch = NULL;
+  31   1              float result=0;
+  32   1              lcd1602_init();
+  33   1      
+  34   1              while(1)
+  35   1              {
+  36   2                      pch=key_getvalue();
+  37   2      
+  38   2                      if(!strcmp(KEY_SQRT_VALUE,pch)) // 进行开方运算
+  39   2                      {
+  40   3                              strcpy(calc_buf,pch);
+  41   3                              lcd1602_show_string(0,0,calc_buf);      
+  42   3                              while(strcmp(KEY_CALC_VALUE,pch))
+  43   3                              {
+  44   4                                      pch=key_getvalue();
+  45   4                                      if(*pch >= '0' && *pch <= '9')
+  46   4                                      {
+  47   5                                              lcd1602_set_pos(0,1);
+  48   5                                              num = num * 10 + (*pch) - '0';
+  49   5                                              lcd1602_show_num(4,0,num);
+  50   5                                      }
+  51   4                              }
+  52   3                              result = sqrt(num);
+  53   3                              sprintf(calc_buf,"%f",result);
+  54   3                              lcd1602_show_string(0,1,calc_buf);
+C51 COMPILER V9.57.0.0   MAIN                                                              12/13/2019 09:45:34 PAGE 2   
+
+  55   3                      }                       
+  56   2                      else if(!strcmp(KEY_LOG10_VALUE,pch))
+  57   2                      {
+  58   3                              strcpy(calc_buf,pch);
+  59   3                              lcd1602_show_string(0,0,calc_buf);
+  60   3                              while(strcmp(KEY_CALC_VALUE,pch))
+  61   3                              {
+  62   4                                      pch=key_getvalue();
+  63   4                                      if(*pch >= '0' && *pch <= '9')
+  64   4                                      {
+  65   5                                              lcd1602_set_pos(0,1);
+  66   5                                              num = num * 10 + (*pch) - '0';
+  67   5                                              lcd1602_show_num(4,0,num);
+  68   5                                      }
+  69   4                              }
+  70   3                              result = log10(num);
+  71   3                              sprintf(calc_buf,"%f",result);
+  72   3                              lcd1602_show_string(0,1,calc_buf);
+  73   3                      }
+  74   2                      else if(!strcmp(KEY_SIN_VALUE,pch))
+  75   2                      {
+  76   3                              strcpy(calc_buf,pch);
+  77   3                              lcd1602_show_string(0,0,calc_buf);
+  78   3                              while(strcmp(KEY_CALC_VALUE,pch))
+  79   3                              {
+  80   4                                      pch=key_getvalue();
+  81   4                                      if(*pch >= '0' && *pch <= '9')
+  82   4                                      {
+  83   5                                              lcd1602_set_pos(0,1);
+  84   5                                              num = num * 10 + (*pch) - '0';
+  85   5                                              lcd1602_show_num(4,0,num);
+  86   5                                      }
+  87   4                              }
+  88   3                              result = sin((float)num);
+  89   3                              sprintf(calc_buf,"%f",result);
+  90   3                              lcd1602_show_string(0,1,calc_buf);
+  91   3                      }
+  92   2                      else if(!strcmp(KEY_COS_VALUE,pch))
+  93   2                      {
+  94   3                              strcpy(calc_buf,pch);
+  95   3                              lcd1602_show_string(0,0,calc_buf);
+  96   3                              while(strcmp(KEY_CALC_VALUE,pch))
+  97   3                              {
+  98   4                                      pch=key_getvalue();
+  99   4                                      if(*pch >= '0' && *pch <= '9')
+ 100   4                                      {
+ 101   5                                              lcd1602_set_pos(0,1);
+ 102   5                                              num = num * 10 + (*pch) - '0';
+ 103   5                                              lcd1602_show_num(4,0,num);
+ 104   5                                      }
+ 105   4                              }
+ 106   3                              result = cos((float)num);
+ 107   3                              sprintf(calc_buf,"%f",result);
+ 108   3                              lcd1602_show_string(0,1,calc_buf);
+ 109   3                      }
+ 110   2                      else if(!strcmp(KEY_TAN_VALUE,pch))
+ 111   2                      {
+ 112   3                              strcpy(calc_buf,pch);
+ 113   3                              lcd1602_show_string(0,0,calc_buf);
+ 114   3                              while(strcmp(KEY_CALC_VALUE,pch))
+ 115   3                              {
+ 116   4                                      pch=key_getvalue();
+C51 COMPILER V9.57.0.0   MAIN                                                              12/13/2019 09:45:34 PAGE 3   
+
+ 117   4                                      if(*pch >= '0' && *pch <= '9')
+ 118   4                                      {
+ 119   5                                              lcd1602_set_pos(0,1);
+ 120   5                                              num = num * 10 + (*pch) - '0';
+ 121   5                                              lcd1602_show_num(4,0,num);
+ 122   5                                      }
+ 123   4                              }
+ 124   3                              result = tan((float)num);
+ 125   3                              sprintf(calc_buf,"%f",result);
+ 126   3                              lcd1602_show_string(0,1,calc_buf);
+ 127   3                      }               
+ 128   2                      else if(!strcmp(KEY_CLEAR_VALUE,pch))
+ 129   2                      {
+ 130   3                              lcd1602_write(0x01,LCD1602_CMD);
+ 131   3                      }       
+ 132   2                      num = 0 ;
+ 133   2                      
+ 134   2      //              lcd1602_show_string(0,0,(const char*)formula_buf);
+ 135   2      
+ 136   2              }
+ 137   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    932    ----
+   CONSTANT SIZE    =     34    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     50      11
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

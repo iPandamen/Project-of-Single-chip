@@ -1,0 +1,170 @@
+C51 COMPILER V9.57.0.0   KEYBOARD                                                          12/13/2019 09:45:34 PAGE 1   
+
+
+C51 COMPILER V9.57.0.0, COMPILATION OF MODULE KEYBOARD
+OBJECT MODULE PLACED IN .\Objects\keyboard.obj
+COMPILER INVOKED BY: D:\Keil\C51\BIN\C51.EXE APP\keyborad\keyboard.c OPTIMIZE(8,SPEED) BROWSE INCDIR(.\User;.\APP\lcd160
+                    -2;.\APP\keyborad) DEBUG OBJECTEXTEND PRINT(.\Listings\keyboard.lst) OBJECT(.\Objects\keyboard.obj)
+
+line level    source
+
+   1          /*******************************************
+   2          *       @file           keyborad.h
+   3          *       @author         Panda   
+   4          *       @version        V0.0.1
+   5          *       @date           2019.12
+   6          *       @brief          matrix keyboard driver header files
+   7          ********************************************/
+   8          
+   9          #include "keyboard.h"
+  10          
+  11          
+  12          /******************************************
+  13          *       @brief          按键扫描
+  14          *       @param          None
+  15          *       @retval         返回键的位置
+  16          *******************************************/
+  17          uchar key_scan(void)
+  18          {
+  19   1              uchar temp=0;
+  20   1              uchar t=0;
+  21   1              
+  22   1              KEYBOARD_PORT = 0xF0;
+  23   1              C4 = 0;
+  24   1              if(KEYBOARD_PORT != 0xF0)
+  25   1              {
+  26   2                      delay_ms(10);  // 防止抖动
+  27   2                      if(KEYBOARD_PORT != 0xF0)
+  28   2                      {
+  29   3                              temp = (~KEYBOARD_PORT)&0xF0;                           
+  30   3                              /*
+  31   3                              1111 0000
+  32   3                              1110 0000
+  33   3                              0001 1111 & 1111 0000
+  34   3                              0001 0000
+  35   3                              */
+  36   3                              // 获取列位置
+  37   3                              KEYBOARD_PORT = 0x0F;
+  38   3                              C4 = 1;
+  39   3                              if(KEYBOARD_PORT == 0x0F && C4 == 0)
+  40   3                              {
+  41   4                                      temp |= 0x05;
+  42   4                              }
+  43   3                              else
+  44   3                              {               
+  45   4                                      temp |= (~KEYBOARD_PORT)&0x0F;
+  46   4                                      /*
+  47   4                                      0000 1110
+  48   4                                      1111 0001 & 0000 1111
+  49   4                                      0000 0001
+  50   4                                      */
+  51   4                              }
+  52   3                              while(t<50 && (KEYBOARD_PORT != 0x0F || C4 != 1))  // 等待按键松开
+  53   3                              {
+  54   4                                      delay_ms(100);
+C51 COMPILER V9.57.0.0   KEYBOARD                                                          12/13/2019 09:45:34 PAGE 2   
+
+  55   4                                      t++;
+  56   4                              }
+  57   3                              return temp;
+  58   3                      }
+  59   2              }
+  60   1              return 0;
+  61   1      }
+  62          
+  63          
+  64          uchar* key_getvalue(void)
+  65          {
+  66   1              uchar temp = 0;
+  67   1              uchar value[10] = {0};
+  68   1              temp = key_scan();
+  69   1              
+  70   1              switch(temp)
+  71   1              {
+  72   2                      case KEY_0:
+  73   2                              return KEY_0_VALUE;
+  74   2                              break;
+  75   2                      case KEY_1:
+  76   2                              return KEY_1_VALUE;
+  77   2                              break;
+  78   2                      case KEY_2:
+  79   2                              return KEY_2_VALUE;
+  80   2                              break;
+  81   2                      case KEY_3:
+  82   2                              return KEY_3_VALUE;
+  83   2                              break;
+  84   2                      case KEY_4:
+  85   2                              return KEY_4_VALUE;
+  86   2                              break;
+  87   2                      case KEY_5:
+  88   2                              return KEY_5_VALUE;
+  89   2                              break;
+  90   2                      case KEY_6:
+  91   2                              return KEY_6_VALUE;
+  92   2                              break;
+  93   2                      case KEY_7:
+  94   2                              return KEY_7_VALUE;
+  95   2                              break;
+  96   2                      case KEY_8:
+  97   2                              return KEY_8_VALUE;
+  98   2                              break;
+  99   2                      case KEY_9:
+ 100   2                              return KEY_9_VALUE;
+ 101   2                              break;
+ 102   2                      case KEY_CLEAR:
+ 103   2                              return KEY_CLEAR_VALUE;
+ 104   2                              break;
+ 105   2                      case KEY_CALC:
+ 106   2                              return KEY_CALC_VALUE;
+ 107   2                              break;
+ 108   2                      case KEY_PLUS:
+ 109   2                              return KEY_PLUS_VALUE;
+ 110   2                              break;
+ 111   2                      case KEY_MINUS:
+ 112   2                              return KEY_MINUS_VALUE;
+ 113   2                              break;
+ 114   2                      case KEY_MULTI:
+ 115   2                              return KEY_MULTI_VALUE;
+ 116   2                              break;
+C51 COMPILER V9.57.0.0   KEYBOARD                                                          12/13/2019 09:45:34 PAGE 3   
+
+ 117   2                      case KEY_SQRT:
+ 118   2                              return KEY_SQRT_VALUE;
+ 119   2                              break;
+ 120   2                      case KEY_LOG10:
+ 121   2                              return KEY_LOG10_VALUE;
+ 122   2                              break;
+ 123   2                      case KEY_SIN:
+ 124   2                              return KEY_SIN_VALUE;
+ 125   2                              break;
+ 126   2                      case KEY_COS:
+ 127   2                              return KEY_COS_VALUE;
+ 128   2                              break;
+ 129   2                      case KEY_TAN:
+ 130   2                              return KEY_TAN_VALUE;
+ 131   2                              break;
+ 132   2                      default:
+ 133   2                              // no input
+ 134   2                              break;
+ 135   2              }
+ 136   1              return value;
+ 137   1      
+ 138   1      }
+ 139          
+ 140          /******************************** END OF FILE **********************************/
+ 141          
+ 142          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    329    ----
+   CONSTANT SIZE    =     67    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----      12
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

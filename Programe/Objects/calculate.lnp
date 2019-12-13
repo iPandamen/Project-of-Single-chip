@@ -1,0 +1,6 @@
+".\Objects\main.obj",
+".\Objects\STARTUP.obj",
+".\Objects\lcd1602.obj",
+".\Objects\keyboard.obj" 
+TO ".\Objects\calculate" 
+PRINT(".\Listings\calculate.m51") RAMSIZE(256) 
