@@ -60,7 +60,11 @@ uchar key_scan(void)
 	return 0;
 }
 
-
+/******************************************
+*	@brief 		获取按键的值
+*	@param		None
+*	@retval		返回键的值
+*******************************************/
 uchar* key_getvalue(void)
 {
 	uchar temp = 0;

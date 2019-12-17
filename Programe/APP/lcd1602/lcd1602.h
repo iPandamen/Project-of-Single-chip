@@ -33,7 +33,7 @@ void lcd1602_show_num(uchar x,uchar y,uint num);
 	
 void lcd1602_show_float(uchar x,uchar y,float num);
 	
-void lcd1602_show_string(uchar x,uchar y,const char* str);
+void lcd1602_show_string(uchar x,uchar y,const char* str,uchar mode);
 
 void lcd1602_init(void);
 

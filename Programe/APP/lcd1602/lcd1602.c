@@ -122,12 +122,22 @@ void lcd1602_show_num(uchar x,uchar y,uint num)
 *	@param	x: x 坐标
 *			y: y 坐标
 *			str: 显示字符串的地址
+*			mode: 
+*		@arg  1: 居中显示
+*			  0: 
 *	@retval	None
 ********************************************/
-void lcd1602_show_string(uchar x,uchar y,const char* str)
+void lcd1602_show_string(uchar x,uchar y,const char* str,uchar mode)
 {
 	uchar i=0;
-	lcd1602_set_pos(x,y);
+	if(mode == 1)
+	{
+		lcd1602_set_pos((15-strlen(str))/2+1,y);
+	}
+	else
+	{
+		lcd1602_set_pos(x,y);
+	}
 	for(i=0;i<strlen(str);i++)
 	{
 		lcd1602_write(*(str+i),LCD1602_DATA);
@@ -141,13 +151,14 @@ void lcd1602_show_string(uchar x,uchar y,const char* str)
 ********************************************/
 void lcd1602_init(void)
 {
-	lcd1602_write(0x38,LCD1602_CMD);	// 进入设置模式
-	lcd1602_write(0x0C,LCD1602_CMD);	//开显示  光标不显示 
+	lcd1602_write(0x38,LCD1602_CMD);	// 功能设置	 8位数据接口 两行显示 5*7点阵字符
+	
+	lcd1602_write(0x0C,LCD1602_CMD);	//开显示  光标不显示 不闪烁
 	
 //	lcd1602_write(0x0F,LCD1602_CMD);	//开显示 显示光标  
 	
-	lcd1602_write(0x06,LCD1602_CMD);	//读写一个字符后地址指针 +1
-	   
+	lcd1602_write(0x06,LCD1602_CMD);	//数据读写操作 后地址指针自动增1  画面不动
+	
 	lcd1602_write(0x01,LCD1602_CMD);	//清屏
 	
 	lcd1602_write(0x80,LCD1602_CMD);	//初始化数据地址指针
