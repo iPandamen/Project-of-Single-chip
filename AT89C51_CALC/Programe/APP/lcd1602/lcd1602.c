@@ -39,38 +39,38 @@ void lcd1602_write(uchar w_data,uchar data_type)
 *		@arg	0：读状态
 *	@retval	None
 ********************************************/
-void lcd1602_read(uchar* r_data,uchar data_type)
-{
-	uchar i = 0;
-	
-	lcd1602_E = 0;
-	lcd1602_RS = data_type;
-	lcd1602_RW = 1;
-	
-	lcd1602_E = 1;
-	
-	*r_data = lcd1602_data;
-	lcd1602_delay1ms(1);
-	
-	lcd1602_E = 0;
-}
+//void lcd1602_read(uchar* r_data,uchar data_type)
+//{
+//	uchar i = 0;
+//	
+//	lcd1602_E = 0;
+//	lcd1602_RS = data_type;
+//	lcd1602_RW = 1;
+//	
+//	lcd1602_E = 1;
+//	
+//	*r_data = lcd1602_data;
+//	lcd1602_delay1ms(1);
+//	
+//	lcd1602_E = 0;
+//}
 
 
-/*******************************************
-*	@brief	lcd1602 忙状态检测
-*	@param	None
-*	@retval	1: 忙碌中
-*			0：空闲
-********************************************/
-uchar lcd1602_get_busy(void)
-{
-	uchar status=0;
-	lcd1602_read(&status,LCD1602_CMD);
-	if(status&0x80)
-		return 1;
-	else 
-		return 0;
-}
+///*******************************************
+//*	@brief	lcd1602 忙状态检测
+//*	@param	None
+//*	@retval	1: 忙碌中
+//*			0：空闲
+//********************************************/
+//uchar lcd1602_get_busy(void)
+//{
+//	uchar status=0;
+//	lcd1602_read(&status,LCD1602_CMD);
+//	if(status&0x80)
+//		return 1;
+//	else 
+//		return 0;
+//}
 
 /*******************************************
 *	@brief	lcd1602 set cursor position
@@ -132,7 +132,7 @@ void lcd1602_show_string(uchar x,uchar y,const char* str,uchar mode)
 	uchar i=0;
 	if(mode == 1)
 	{
-		lcd1602_set_pos((15-strlen(str))/2+1,y);
+		lcd1602_set_pos((16-strlen(str))/2,y);
 	}
 	else
 	{
@@ -151,7 +151,7 @@ void lcd1602_show_string(uchar x,uchar y,const char* str,uchar mode)
 ********************************************/
 void lcd1602_init(void)
 {
-	lcd1602_write(0x38,LCD1602_CMD);	// 功能设置	 8位数据接口 两行显示 5*7点阵字符
+	lcd1602_write(0x38,LCD1602_CMD);	// 功能设置	 8位数据接口 16*2 两行显示 5*7点阵字符
 	
 	lcd1602_write(0x0C,LCD1602_CMD);	//开显示  光标不显示 不闪烁
 	

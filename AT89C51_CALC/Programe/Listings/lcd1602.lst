@@ -1,4 +1,4 @@
-C51 COMPILER V9.57.0.0   LCD1602                                                           12/17/2019 12:04:39 PAGE 1   
+C51 COMPILER V9.57.0.0   LCD1602                                                           12/18/2019 10:34:11 PAGE 1   
 
 
 C51 COMPILER V9.57.0.0, COMPILATION OF MODULE LCD1602
@@ -49,40 +49,40 @@ line level    source
   39          *               @arg    0：读状态
   40          *       @retval None
   41          ********************************************/
-  42          void lcd1602_read(uchar* r_data,uchar data_type)
-  43          {
-  44   1              uchar i = 0;
-  45   1              
-  46   1              lcd1602_E = 0;
-  47   1              lcd1602_RS = data_type;
-  48   1              lcd1602_RW = 1;
-  49   1              
-  50   1              lcd1602_E = 1;
-  51   1              
-  52   1              *r_data = lcd1602_data;
-  53   1              lcd1602_delay1ms(1);
-  54   1              
-C51 COMPILER V9.57.0.0   LCD1602                                                           12/17/2019 12:04:39 PAGE 2   
+  42          //void lcd1602_read(uchar* r_data,uchar data_type)
+  43          //{
+  44          //      uchar i = 0;
+  45          //      
+  46          //      lcd1602_E = 0;
+  47          //      lcd1602_RS = data_type;
+  48          //      lcd1602_RW = 1;
+  49          //      
+  50          //      lcd1602_E = 1;
+  51          //      
+  52          //      *r_data = lcd1602_data;
+  53          //      lcd1602_delay1ms(1);
+  54          //      
+C51 COMPILER V9.57.0.0   LCD1602                                                           12/18/2019 10:34:11 PAGE 2   
 
-  55   1              lcd1602_E = 0;
-  56   1      }
+  55          //      lcd1602_E = 0;
+  56          //}
   57          
   58          
-  59          /*******************************************
-  60          *       @brief  lcd1602 忙状态检测
-  61          *       @param  None
-  62          *       @retval 1: 忙碌中
-  63          *                       0：空闲
-  64          ********************************************/
-  65          uchar lcd1602_get_busy(void)
-  66          {
-  67   1              uchar status=0;
-  68   1              lcd1602_read(&status,LCD1602_CMD);
-  69   1              if(status&0x80)
-  70   1                      return 1;
-  71   1              else 
-  72   1                      return 0;
-  73   1      }
+  59          ///*******************************************
+  60          //*     @brief  lcd1602 忙状态检测
+  61          //*     @param  None
+  62          //*     @retval 1: 忙碌中
+  63          //*                     0：空闲
+  64          //********************************************/
+  65          //uchar lcd1602_get_busy(void)
+  66          //{
+  67          //      uchar status=0;
+  68          //      lcd1602_read(&status,LCD1602_CMD);
+  69          //      if(status&0x80)
+  70          //              return 1;
+  71          //      else 
+  72          //              return 0;
+  73          //}
   74          
   75          /*******************************************
   76          *       @brief  lcd1602 set cursor position
@@ -126,7 +126,7 @@ line level    source
  114   2                      num /= 10;
  115   2                      i--;
  116   2              }
-C51 COMPILER V9.57.0.0   LCD1602                                                           12/17/2019 12:04:39 PAGE 3   
+C51 COMPILER V9.57.0.0   LCD1602                                                           12/18/2019 10:34:11 PAGE 3   
 
  117   1      }       
  118          
@@ -146,7 +146,7 @@ line level    source
  132   1              uchar i=0;
  133   1              if(mode == 1)
  134   1              {
- 135   2                      lcd1602_set_pos((15-strlen(str))/2+1,y);
+ 135   2                      lcd1602_set_pos((16-strlen(str))/2,y);
  136   2              }
  137   1              else
  138   1              {
@@ -165,7 +165,7 @@ line level    source
  151          ********************************************/
  152          void lcd1602_init(void)
  153          {
- 154   1              lcd1602_write(0x38,LCD1602_CMD);        // 功能设置      8位数据接口 两行显示 5*7点阵字符
+ 154   1              lcd1602_write(0x38,LCD1602_CMD);        // 功能设置      8位数据接口 16*2 两行显示 5*7点阵字符
  155   1              
  156   1              lcd1602_write(0x0C,LCD1602_CMD);        //开显示  光标不显示 不闪烁
  157   1              
@@ -186,13 +186,13 @@ line level    source
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    315    ----
+   CODE SIZE        =    262    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
-C51 COMPILER V9.57.0.0   LCD1602                                                           12/17/2019 12:04:39 PAGE 4   
+C51 COMPILER V9.57.0.0   LCD1602                                                           12/18/2019 10:34:11 PAGE 4   
 
-   DATA SIZE        =   ----      14
+   DATA SIZE        =   ----      12
    IDATA SIZE       =   ----    ----
    BIT SIZE         =   ----    ----
 END OF MODULE INFORMATION.

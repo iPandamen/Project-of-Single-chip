@@ -68,7 +68,7 @@ uchar key_scan(void)
 uchar* key_getvalue(void)
 {
 	uchar temp = 0;
-	uchar value[10] = {0};
+	
 	temp = key_scan();
 	
 	switch(temp)
@@ -135,10 +135,9 @@ uchar* key_getvalue(void)
 			break;
 		default:
 			// no input
+			return 0;
 			break;
 	}
-	return value;
-
 }
 
 /******************************** END OF FILE **********************************/

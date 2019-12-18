@@ -42,10 +42,8 @@ int main(void)
 				pch=key_getvalue();
 				if(*pch >= '0' && *pch <= '9')
 				{
-					lcd1602_set_pos(0,1);
 					num = num * 10 + (*pch) - '0';
-					sprintf(calc_buf,"%s %d",calc_buf,num);
-					
+					sprintf(calc_buf,"%s %d",calc_buf,num);				
 					lcd1602_show_string(0,0,calc_buf,1); 
 					//lcd1602_show_num(4,0,num);
 				}
@@ -63,7 +61,6 @@ int main(void)
 				pch=key_getvalue();
 				if(*pch >= '0' && *pch <= '9')
 				{
-					lcd1602_set_pos(0,1);
 					num = num * 10 + (*pch) - '0';
 					sprintf(calc_buf,"%s %d",calc_buf,num);
 					
@@ -84,7 +81,6 @@ int main(void)
 				pch=key_getvalue();
 				if(*pch >= '0' && *pch <= '9')
 				{
-					lcd1602_set_pos(0,1);
 					num = num * 10 + (*pch) - '0';
 					sprintf(calc_buf,"%s %d",calc_buf,num);
 					
@@ -105,7 +101,6 @@ int main(void)
 				pch=key_getvalue();
 				if(*pch >= '0' && *pch <= '9')
 				{
-					lcd1602_set_pos(0,1);
 					num = num * 10 + (*pch) - '0';
 					sprintf(calc_buf,"%s %d",calc_buf,num);
 					
@@ -126,7 +121,6 @@ int main(void)
 				pch=key_getvalue();
 				if(*pch >= '0' && *pch <= '9')
 				{
-					lcd1602_set_pos(0,1);
 					num = num * 10 + (*pch) - '0';
 					sprintf(calc_buf,"%s %d",calc_buf,num);
 					
