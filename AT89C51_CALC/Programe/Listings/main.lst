@@ -1,4 +1,4 @@
-C51 COMPILER V9.57.0.0   MAIN                                                              12/18/2019 10:30:35 PAGE 1   
+C51 COMPILER V9.57.0.0   MAIN                                                              12/18/2019 11:57:11 PAGE 1   
 
 
 C51 COMPILER V9.57.0.0, COMPILATION OF MODULE MAIN
@@ -62,7 +62,7 @@ line level    source
   52   3                              sprintf(calc_buf,"%f",result);
   53   3                              lcd1602_show_string(0,1,calc_buf,1);
   54   3                      }                       
-C51 COMPILER V9.57.0.0   MAIN                                                              12/18/2019 10:30:35 PAGE 2   
+C51 COMPILER V9.57.0.0   MAIN                                                              12/18/2019 11:57:11 PAGE 2   
 
   55   2                      else if(!strcmp(KEY_LOG10_VALUE,pch))
   56   2                      {
@@ -126,7 +126,7 @@ line level    source
  114   3                      }
  115   2                      else if(!strcmp(KEY_TAN_VALUE,pch))
  116   2                      {
-C51 COMPILER V9.57.0.0   MAIN                                                              12/18/2019 10:30:35 PAGE 3   
+C51 COMPILER V9.57.0.0   MAIN                                                              12/18/2019 11:57:11 PAGE 3   
 
  117   3                              strcpy(calc_buf,pch);
  118   3                              lcd1602_show_string(0,0,calc_buf,1);    

@@ -1,4 +1,4 @@
-C51 COMPILER V9.57.0.0   LCD1602                                                           12/18/2019 10:34:11 PAGE 1   
+C51 COMPILER V9.57.0.0   LCD1602                                                           12/18/2019 11:57:12 PAGE 1   
 
 
 C51 COMPILER V9.57.0.0, COMPILATION OF MODULE LCD1602
@@ -62,7 +62,7 @@ line level    source
   52          //      *r_data = lcd1602_data;
   53          //      lcd1602_delay1ms(1);
   54          //      
-C51 COMPILER V9.57.0.0   LCD1602                                                           12/18/2019 10:34:11 PAGE 2   
+C51 COMPILER V9.57.0.0   LCD1602                                                           12/18/2019 11:57:12 PAGE 2   
 
   55          //      lcd1602_E = 0;
   56          //}
@@ -126,7 +126,7 @@ line level    source
  114   2                      num /= 10;
  115   2                      i--;
  116   2              }
-C51 COMPILER V9.57.0.0   LCD1602                                                           12/18/2019 10:34:11 PAGE 3   
+C51 COMPILER V9.57.0.0   LCD1602                                                           12/18/2019 11:57:12 PAGE 3   
 
  117   1      }       
  118          
@@ -190,7 +190,7 @@ MODULE INFORMATION:   STATIC OVERLAYABLE
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
-C51 COMPILER V9.57.0.0   LCD1602                                                           12/18/2019 10:34:11 PAGE 4   
+C51 COMPILER V9.57.0.0   LCD1602                                                           12/18/2019 11:57:12 PAGE 4   
 
    DATA SIZE        =   ----      12
    IDATA SIZE       =   ----    ----
