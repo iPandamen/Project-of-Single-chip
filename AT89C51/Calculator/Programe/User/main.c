@@ -43,7 +43,7 @@ int main(void)
 				if(*pch >= '0' && *pch <= '9')
 				{
 					num = num * 10 + (*pch) - '0';
-					sprintf(calc_buf,"%s %d",calc_buf,num);				
+					sprintf(calc_buf,"%s %d",KEY_SQRT_VALUE,num);				
 					lcd1602_show_string(0,0,calc_buf,1); 
 					//lcd1602_show_num(4,0,num);
 				}
@@ -62,7 +62,7 @@ int main(void)
 				if(*pch >= '0' && *pch <= '9')
 				{
 					num = num * 10 + (*pch) - '0';
-					sprintf(calc_buf,"%s %d",calc_buf,num);
+					sprintf(calc_buf,"%s %d",KEY_LOG10_VALUE,num);
 					
 					lcd1602_show_string(0,0,calc_buf,1); 
 					//lcd1602_show_num(4,0,num);
@@ -82,7 +82,7 @@ int main(void)
 				if(*pch >= '0' && *pch <= '9')
 				{
 					num = num * 10 + (*pch) - '0';
-					sprintf(calc_buf,"%s %d",calc_buf,num);
+					sprintf(calc_buf,"%s %d",KEY_SIN_VALUE,num);
 					
 					lcd1602_show_string(0,0,calc_buf,1); 
 					//lcd1602_show_num(4,0,num);
@@ -102,7 +102,7 @@ int main(void)
 				if(*pch >= '0' && *pch <= '9')
 				{
 					num = num * 10 + (*pch) - '0';
-					sprintf(calc_buf,"%s %d",calc_buf,num);
+					sprintf(calc_buf,"%s %d",KEY_COS_VALUE,num);
 					
 					lcd1602_show_string(0,0,calc_buf,1); 
 					//lcd1602_show_num(4,0,num);
@@ -122,7 +122,7 @@ int main(void)
 				if(*pch >= '0' && *pch <= '9')
 				{
 					num = num * 10 + (*pch) - '0';
-					sprintf(calc_buf,"%s %d",calc_buf,num);
+					sprintf(calc_buf,"%s %d",KEY_TAN_VALUE,num);
 					
 					lcd1602_show_string(0,0,calc_buf,1); 
 					//lcd1602_show_num(4,0,num);

@@ -1,0 +1,1 @@
+"APP\lcd1602\lcd1602.c" OPTIMIZE (8,SPEED) BROWSE INCDIR(.\User;.\APP\lcd1602;.\APP\keyborad) DEBUG OBJECTEXTEND PRINT(.\Listings\lcd1602.lst) OBJECT(.\Objects\lcd1602.obj)
